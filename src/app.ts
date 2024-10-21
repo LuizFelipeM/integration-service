@@ -10,6 +10,7 @@ import { ConsumersRegistry } from "./consumers/consumers.registry"
 import { container } from "tsyringe";
 import { RabbitMQClientSymbol } from "./symbols/rabbitmq-client.symbol";
 import { QueueConfig } from "./clients/rabbit-mq/queue-config";
+import * as rabbitMqSettings from "../rabbitmq.settings.json"
 
 const start = async () => {
   try {
@@ -22,7 +23,7 @@ const start = async () => {
         EventConsumerSymbol,
         new EventConsumerConfig(
           process.env.RABBITMQ_URL!,
-          new QueueConfig(process.env.RABBITMQ_QUEUE!, Boolean(process.env.RABBITMQ_QUEUE_IS_DURABLE))
+          new QueueConfig(rabbitMqSettings.webhook.queue.name, Boolean(rabbitMqSettings.webhook.queue.isDurable))
         ))
     })
 

@@ -1,0 +1,8 @@
+{
+    "webhook": {
+        "queue": {
+            "name": "webhook.publisher",
+            "isDurable": true
+        }
+    }
+}
