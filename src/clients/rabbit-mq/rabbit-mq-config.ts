@@ -1,6 +1,6 @@
 import { QueueConfig } from "./queue-config";
 
-export class RabbitMQConfig {
+export abstract class RabbitMQConfig {
   constructor(
     public url: string,
     public queue: QueueConfig) { }

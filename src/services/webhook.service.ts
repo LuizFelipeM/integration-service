@@ -1,24 +1,16 @@
-import { Repository } from "typeorm";
-import { WebhookSubscriptionEntity } from "../entities/webhook-subscription.entity";
 import axios from "axios";
 import { logger } from "../server";
-import { Consumer } from "../clients/rabbit-mq/consumer";
+import { inject, injectable, registry } from "tsyringe";
+import { WebhookSubscriptionRepository } from "../repositories/webhook-subscription.repository";
 
-export class WebhookService extends Consumer<unknown> {
-  constructor(private readonly webhookRepository: Repository<WebhookSubscriptionEntity>) {
-    super();
+@injectable()
+export class WebhookService {
+  constructor(
+    @inject(WebhookSubscriptionRepository) private readonly webhookSubscriptionRepository: WebhookSubscriptionRepository) {
   }
 
-  async getSubscribedWebhooks(event: string): Promise<WebhookSubscriptionEntity[]> {
-    return this.webhookRepository.find({ where: { event: { name: event } } });
-  }
-
-  public async consume(headers: { [key: string]: any; }, payload: unknown): Promise<void> {
-    this.process(headers.event, payload)
-  }
-
-  private async process(event: string, payload: unknown) {
-    const webhooks = await this.getSubscribedWebhooks(event)
+  public async process(event: string, payload: unknown) {
+    const webhooks = await this.webhookSubscriptionRepository.findByEvent(event)
     for (const webhook of webhooks) {
       try {
         await axios.post(webhook.url, payload);

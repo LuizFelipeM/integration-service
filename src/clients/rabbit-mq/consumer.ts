@@ -1,5 +1,5 @@
-type MessageHeaders = { [key: string]: any }
+export type MessageHeaders = { [key: string]: any }
 
 export abstract class Consumer<T> {
-  public abstract consume(headers: MessageHeaders, payload: T): Promise<void>
+  public abstract receive(headers: MessageHeaders, payload: T): Promise<void>
 }
