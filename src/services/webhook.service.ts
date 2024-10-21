@@ -1,6 +1,5 @@
-import axios from "axios";
 import { logger } from "../server";
-import { inject, injectable, registry } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { WebhookSubscriptionRepository } from "../repositories/webhook-subscription.repository";
 
 @injectable()
@@ -11,13 +10,17 @@ export class WebhookService {
 
   public async process(event: string, payload: unknown) {
     const webhooks = await this.webhookSubscriptionRepository.findByEvent(event)
+
+    let errors = []
     for (const webhook of webhooks) {
       try {
-        await axios.post(webhook.url, payload);
-        logger.info(`Event sent to webhook: ${webhook.url}`);
+        await webhook.publish(payload)
       } catch (error) {
-        logger.error(`Failed to send event to ${webhook.url}:`, error);
+        errors.push(error)
       }
     }
+
+    if (errors.length) logger.error(`Failed to publish to all webhooks errors:`, ...errors)
+    else logger.info('Sucessfuly published to all webhooks')
   }
 }
