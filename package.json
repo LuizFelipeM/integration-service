@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "amqp-simple-client": "^1.0.3",
+    "amqp-simple-client": "^2.0.0",
     "axios": "^1.7.7",
     "dotenv": "^16.4.5",
     "fastify": "^5.0.0",

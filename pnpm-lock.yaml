@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       amqp-simple-client:
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^2.0.0
+        version: 2.0.0
       axios:
         specifier: ^1.7.7
         version: 1.7.7
@@ -127,8 +127,8 @@ packages:
   ajv@8.17.1:
     resolution: {integrity: sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==}
 
-  amqp-simple-client@1.0.3:
-    resolution: {integrity: sha512-xbO1ReWJXXWyVIvTyCAOnu0vewWhSE9xQ2vssb4Do0E5IToNZhy+cu+YRPqFqKBnx+xM2fz1ANXP/nFab42SKw==}
+  amqp-simple-client@2.0.0:
+    resolution: {integrity: sha512-f+P4Ys/WkDY+35pyR+OQg9McfDvui8R4rNjkP1i+LhnkjYkJVbggAhriievOIYg6tDJWrQHk9OuhPF9QihIXiQ==}
 
   amqplib@0.10.4:
     resolution: {integrity: sha512-DMZ4eCEjAVdX1II2TfIUpJhfKAuoCeDIo/YyETbfAqehHTXxxs7WOOd+N1Xxr4cKhx12y23zk8/os98FxlZHrw==}
@@ -944,7 +944,7 @@ snapshots:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
-  amqp-simple-client@1.0.3:
+  amqp-simple-client@2.0.0:
     dependencies:
       amqplib: 0.10.4
     transitivePeerDependencies:
