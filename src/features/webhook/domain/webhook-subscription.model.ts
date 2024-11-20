@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export class WebhookSubscriptionModel {
-  constructor(private readonly url: string) {
+  constructor(public readonly url: string) {
   }
 
-  async publish(payload: unknown) {
+  async send(payload: unknown) {
     await axios.post(this.url, payload)
   }
 }

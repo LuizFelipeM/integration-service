@@ -1,1 +1,0 @@
-export const EventConsumerSymbol: unique symbol = Symbol("EventConsumer")

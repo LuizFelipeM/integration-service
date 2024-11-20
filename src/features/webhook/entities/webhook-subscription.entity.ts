@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
-import { EventEntity } from './event.entity';
+import { CommandTypeEntity } from './command-type.entity';
 
 @Entity({ name: "webhook_subscription" })
 export class WebhookSubscriptionEntity {
@@ -9,7 +9,7 @@ export class WebhookSubscriptionEntity {
   @Column({ name: "url" })
   url: string;
 
-  @OneToOne(() => EventEntity)
-  @JoinColumn({ name: "event_id" })
-  event: EventEntity;
+  @OneToOne(() => CommandTypeEntity)
+  @JoinColumn({ name: "command_type_id" })
+  commandType: CommandTypeEntity;
 }

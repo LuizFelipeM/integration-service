@@ -1,10 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity({ name: "event" })
-export class EventEntity {
+@Entity({ name: "command_type" })
+export class CommandTypeEntity {
   @PrimaryGeneratedColumn({ name: "id" })
   id: number;
 
-  @Column({ name: "name", unique: true })
+  @Column({ name: "name" })
   name: string;
 }

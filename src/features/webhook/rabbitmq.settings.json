@@ -1,0 +1,14 @@
+{
+    "webhook": {
+        "queue": {
+            "name": "webhook.commands",
+            "durable": true,
+            "bindings": [
+                {
+                    "exchange": "commands",
+                    "routingKey": "webhook.commands"
+                }
+            ]
+        }
+    }
+}
