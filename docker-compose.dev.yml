@@ -1,0 +1,52 @@
+services:
+  database:
+    image: postgres:17
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    environment:
+      POSTGRES_DB: integration
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  integrationservice:
+    image: integrationservice
+    depends_on:
+      - database
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    volumes:
+      - ./src:/app/integration-service/src
+      - /app/integration-service/node_modules
+    env_file: ".env"
+    environment:
+      NODE_ENV: development
+      # HTTP Server port
+      PORT: 3000
+      # The DB Connection string follow the format:
+      # <dialect>://<username>:<password>@<hostname>/<databasepath>
+      # Actually the user and password are defined in the database entrypoint
+      DB_CONNECTION_STRING: postgresql://postgres:password@database/integration
+    ports:
+      # HTTP Server port
+      - 3000:3000
+      # Debugger port
+      - 9229:9229
+    expose:
+      - 3000
+      - 9229
+    command: pnpm dev:debug
+
+volumes:
+  pgdata:

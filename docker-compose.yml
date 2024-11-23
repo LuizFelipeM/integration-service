@@ -1,0 +1,15 @@
+services:
+  integrationservice:
+    image: integrationservice
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      # HTTP Server port
+      PORT: 3000
+    ports:
+      # HTTP Server port
+      - 3000:3000
+    expose:
+      - 3000

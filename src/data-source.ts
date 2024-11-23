@@ -6,10 +6,10 @@ import { CommandTypeEntity } from './features/webhook/entities/command-type.enti
 export const AppDataSource = new DataSource({
   type: 'postgres',
   url: process.env.DB_CONNECTION_STRING,
-  // synchronize: true,
-  ssl: true,
+  synchronize: true,
+  // ssl: true,
   logging: false,
   entities: [WebhookSubscriptionEntity, CommandTypeEntity],
-  migrations: [],
+  migrations: ["./src/migrations/*.ts"],
   subscribers: [],
 });

@@ -1,12 +1,14 @@
 {
-  "name": "webhook-service",
+  "name": "integration-service",
   "version": "1.0.0",
-  "description": "A simple Webhook Service",
-  "main": "index.js",
+  "description": "A simple third-party Integration Service",
+  "main": "app.js",
   "scripts": {
     "dev": "nodemon --watch 'src/' --exec 'ts-node src/app.ts' -e ts",
+    "dev:debug": "ts-node-dev --watch src --cls --respawn --transpile-only --inspect=9229 src/app.ts",
     "build": "tsc -p tsconfig.json",
-    "start": "node build/index.js"
+    "start": "node build/app.js",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +28,9 @@
     "@types/node": "^22.7.9",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.6.3"
-  }
+  },
+  "packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387"
 }

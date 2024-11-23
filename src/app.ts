@@ -16,7 +16,7 @@ const start = async () => {
 
     webhookStart()
 
-    await server.listen({ port: 3000 })
+    await server.listen({ port: Number(process.env.PORT) })
   } catch (err) {
     server.log.error(err)
     process.exit(1)

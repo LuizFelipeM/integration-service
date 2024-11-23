@@ -1,0 +1,15 @@
+FROM node:lts-alpine AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+COPY . /app/integration-service
+WORKDIR /app/integration-service
+
+FROM base AS deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install
+
+FROM base
+COPY --from=deps /app/integration-service/node_modules /app/integration-service/node_modules
+
+EXPOSE 3000
+CMD ["pnpm", "dev"]
