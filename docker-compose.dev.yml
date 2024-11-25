@@ -46,7 +46,7 @@ services:
     expose:
       - 3000
       - 9229
-    command: pnpm dev:debug
+    command: pnpm dev
 
 volumes:
   pgdata:

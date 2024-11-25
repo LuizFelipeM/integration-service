@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { WebhookSubscriptionEntity } from './features/webhook/entities/webhook-subscription.entity';
 import { CommandTypeEntity } from './features/webhook/entities/command-type.entity';
@@ -10,6 +9,6 @@ export const AppDataSource = new DataSource({
   // ssl: true,
   logging: false,
   entities: [WebhookSubscriptionEntity, CommandTypeEntity],
-  migrations: ["./src/migrations/*.ts"],
+  migrations: [],
   subscribers: [],
 });

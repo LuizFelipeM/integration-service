@@ -1,5 +1,4 @@
 import { inject, injectable } from "tsyringe";
-import { logger } from "../../../server";
 import { WebhookSubscriptionRepository } from "../repositories/webhook-subscription.repository";
 import { SendWebhookCommand } from "../commands/send-webhook.command";
 
@@ -22,7 +21,7 @@ export class WebhookService {
       }
     }
 
-    if (errors.length) logger.error(`Failed to publish command ${command.id} to all webhooks errors: ${errors.map(e => JSON.stringify(e)).join("\n")}`)
-    else logger.info(`Sucessfuly published command ${command.id} to all webhooks`)
+    if (errors.length) console.error(`Failed to publish command ${command.id} to all webhooks errors: ${errors.map(e => JSON.stringify(e)).join("\n")}`)
+    else console.log(`Sucessfuly published command ${command.id} to all webhooks`)
   }
 }
