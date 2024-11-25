@@ -19,4 +19,6 @@ export const webhookStart = () => {
     const webhookService = container.resolve(WebhookService)
     await webhookService.execute(payload)
   })
+
+  console.log("Webhook feature started")
 }
